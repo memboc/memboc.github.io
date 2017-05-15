@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>leave popup</title>
+    <link rel="stylesheet" href="ouibounce.css">
+</head>
+<body>
+    <!-- Popup Modal -->
+    <div id="popup-modal">
+        <div class="underlay"></div>
+        <div class="modal">
+            <img class="slide" src="02-pop.jpg" alt="С подпиской экономия 25%">
+
+<!--             <div class="modal-title">
+                <h3>Thank you for stopping by!</h3>
+            </div> -->
+
+            <div class="modal-body">
+                <!-- <p>If you'd like to stay up to date with my projects, sign up for the newsletter</p> -->
+                <!-- MailChimp Signup -->
+                <div>
+                    <form  class="modal-form" method="post" target="_blank" action="">
+                        <input type="email" name="email" class="required email" placeholder="Введите ваш email">
+                        <input type="submit" name="subscribe" class="button" value="Подписаться">
+                    </form>
+                </div>
+                <!--End MailChimp Signup-->
+            </div>
+
+            <div class="modal-footer">
+                <p>больше не показывать это [Х]</p>
+            </div>
+        </div>
+    </div>
+    <!-- End Popup Modal -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="ouibounce.min.js"></script>
+    <script type="text/javascript">
+        var _ouibounce = ouibounce(document.getElementById('popup-modal'), {
+        timer: 0*1000,
+        // disable create cookie
+        callback: function() {return false;}
+        }),
+        modal_popup_close = function () {
+            _ouibounce.disable({ cookieExpire: 365, sitewide: true })
+            $('#popup-modal').hide();
+        }
+        // disable only by press button
+        $('#popup-modal .underlay, #popup-modal .modal-footer').on('click', modal_popup_close);
+        $('#popup-modal .modal-form').on('submit', modal_popup_close);
+        $('#popup-modal .modal').on('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
